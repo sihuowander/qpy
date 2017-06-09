@@ -1,0 +1,149 @@
+
+
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title>注册帐号</title>
+<link type="text/css" rel="stylesheet"
+	href="/css/bootstrap.css;jsessionid=DCD976FD075D9ADD3A4E0B3687F83054.tomcat2" />
+<link type="text/css" rel="stylesheet"
+	href="/css/register.css;jsessionid=DCD976FD075D9ADD3A4E0B3687F83054.tomcat2" />
+<link type="text/css" rel="stylesheet"
+	href="https://csdnimg.cn/public/common/toolbar/css/index.css" />
+<script
+	src="https://csdnimg.cn/public/common/libs/jquery/jquery-1.9.1.min.js"
+	type="text/javascript"></script>
+<link type="text/css" rel="stylesheet"
+	href="/css/mobileregister.css;jsessionid=DCD976FD075D9ADD3A4E0B3687F83054.tomcat2" />
+<link type="text/css" rel="stylesheet"
+	href="/css/font-awesome.min.css;jsessionid=DCD976FD075D9ADD3A4E0B3687F83054.tomcat2" />
+<link type="text/css" rel="stylesheet"
+	href="/fonts/iconfont.css;jsessionid=DCD976FD075D9ADD3A4E0B3687F83054.tomcat2" />
+<!--if lt IE 9
+    script( src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js" )
+    script( src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js" )
+    -->
+</head>
+<body>
+	<script type="text/javascript">
+		var protocol = window.location.protocol;
+		document.write('<script type="text/javascript" src="' + protocol
+				+ '//csdnimg.cn/pubfooter/js/repoAddr2.js?v=' + Math.random()
+				+ '"></'+'script>');
+	</script>
+	<div class="header"></div>
+	<div class="authentication_info">
+		<span class="txt" id="errmsg"> </span>
+		<button class="close_btn">
+			<i class="fa fa-times" aria-hidden="true"></i>
+		</button>
+	</div>
+	<div class="main">
+		<div class="container container-custom">
+			<div class="register-progress clearfix hidden-xs hidden-sm">
+				<div class="pross pross-ok">
+					<span class="index">1</span>验证手机号
+					<div class="pross-dir pross-dir-bg">
+						<span class="outside"></span><span class="inside"></span>
+					</div>
+				</div>
+				<div class="pross">
+					<span class="index">2</span>填写用户名及密码
+					<div class="pross-dir pross-dir-bg">
+						<span class="outside"></span><span class="inside"></span>
+					</div>
+				</div>
+				<div class="pross">
+					<span class="index">3</span>注册成功
+				</div>
+			</div>
+			<div class="register-info">
+				<h3>
+					<span class="icon"></span>
+				</h3>
+				<div class="bind-mobile clearfix">
+					<form id="form" class="clearfix" method="post"
+						action="/account/mobileregister?action=mobileUserInfoView">
+						<ul class="info">
+							<li><span class="tit">手机号：</span><span class="input">
+									<input type="text" name="mobile" placeholder="请输入手机号"
+									class="mobile-num" value=>
+							</span></li>
+							<li class="vcode"><span class="tit">验证码：</span><span
+								class="input">
+									<div class="verification_box">
+										<img
+											src="/ajax/verifyhandler.ashx"
+											id="yanzheng" class="code-img" /><a
+											href="javascript:void(0);" class="change-code"> 换一张 </a>
+									</div>
+									<div class="input_box">
+										<input type="text" name="validateCode" id="validateCode"
+											placeholder="请输入图片验证码" class="code" />
+									</div>
+							</span></li>
+							<li id="tosend"><span class="tit vertical-top">短信验证：</span>
+								<div class="massage_tip">
+									<div class="top_txt">
+										<span class="little_txt">请使用</span><span id="m_number"
+											class="number pl15 pr15"></span>编辑短信内容<span id="codemsg"
+											class="number pl15 pr15"></span>发送至<span class="number pr15">1069 0463 100</span>进行短信验证，发送完成后请点击
+										我已发送 按钮
+									</div>
+									<div class="top_bot">
+										<i class="icon iconfont s"></i>短信费用由运营商收取
+									</div>
+								</div></li>
+							<li><span class="tit"></span> <span class="provision"
+								style="font-size: 12px;"> <input id="agree" class="agree"
+									name="agree" type="checkbox" checked="checked"
+									style="width: 20px; height: 12px" />我已仔细阅读并接受<a
+									href="/html/registration-policy.html" target="_blank">CSDN注册条款</a>
+							</span></li>
+							<li>
+								<button type="submit" id="submit_send"
+									class="reg_btn reg_submit">我已发送</button>
+								<button type="submit" id="submit_waiting"
+									class="reg_btn reg_waiting">
+									<img src='../images/loading.gif' alt="watiting" />手机短信校验中…
+								</button>
+								<button type="submit" id="submit_redirect"
+									class="reg_btn reg_waiting">
+									<i class="icon iconfont icon-duihao"></i>校验通过，跳转中…
+								</button>
+							</li>
+						</ul>
+					</form>
+				</div>
+				<div id="tooltip" class="tooltip-info">
+					<span class="icon-border"></span><span class="icon-bg"></span><span
+						class="strength"><em class="level">低</em><span></span><span></span><span></span></span><span
+						class="state"></span><span class="mess"></span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="footer"></div>
+	<script src="/js/libs/jquery-migrate-1.2.1.js;jsessionid=DCD976FD075D9ADD3A4E0B3687F83054.tomcat2"></script>
+	<script data-main="/js/mobile-register-conf.js;jsessionid=DCD976FD075D9ADD3A4E0B3687F83054.tomcat2"
+		src="/js/libs/require.js;jsessionid=DCD976FD075D9ADD3A4E0B3687F83054.tomcat2"></script>
+	<script type="text/javascript">
+		document
+				.write('<script type="text/javascript" src="//csdnimg.cn/pubfooter/js/publib_footer.js?'
+						+ Math.floor(new Date() / 120000).toString(36)
+						+ '="></'+'script>');
+	</script>
+	<script src="/js/verify_popups.js;jsessionid=DCD976FD075D9ADD3A4E0B3687F83054.tomcat2"></script>
+</body>
+</html>

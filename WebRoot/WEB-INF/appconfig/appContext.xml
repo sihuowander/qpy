@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+     http://www.springframework.org/schema/beans 
+     http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+     http://www.springframework.org/schema/tx
+     http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+     http://www.springframework.org/schema/aop 
+     http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+
+	<!-- 数据源 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/bjb" />
+		<property name="username" value="wjy" />
+		<property name="password" value="wjy" />
+		<!-- 同一时间可以从池分配的最多连接数量。设置为0时表示无限制。  -->    
+        <property name="maxActive" value="20" />  
+        <!-- 超时等待时间以毫秒为单位  -->    
+        <property name="maxWait" value="500" />  
+        <!-- 池里不会被释放的最多空闲连接数量。设置为0时表示无限制。  -->    
+        <property name="maxIdle" value="3" />  
+        <property name="defaultAutoCommit" value="true" />  
+        <!-- 设置自动回收超时连接 -->   
+        <property name="removeAbandoned" value="true" />  
+        <!-- 自动回收超时时间(以秒数为单位) -->    
+        <property name="removeAbandonedTimeout" value="60" />  
+	</bean>
+
+
+	<bean id="nativeJdbcExtractor"
+		class="org.springframework.jdbc.support.nativejdbc.CommonsDbcpNativeJdbcExtractor"
+		lazy-init="true" />
+	<bean id="oracleLobHandler" class="org.springframework.jdbc.support.lob.OracleLobHandler"
+		lazy-init="true">
+		<property name="nativeJdbcExtractor">
+			<ref local="nativeJdbcExtractor" />
+		</property>
+	</bean>
+	
+	<!-- 处理Clob对象的bean，涉及到处理Clob对象的Dao都需要引用 -->
+	<bean id="defaultLobHandler" class="org.springframework.jdbc.support.lob.OracleLobHandler"
+		lazy-init="true" />
+
+	<!-- IBatis 配置 -->
+	<bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<!-- 在TOMCAT环境下用这个 >-->
+		<property name="configLocation" value="/WEB-INF/appconfig/SqlMapConfig.xml" />
+		<!-- 在main中测试用下面这个-->
+		<!--
+			<property name="configLocation"
+			value="D:/LCAM二期/LCAM_FLEX/lcam/WebRoot/WEB-INF/appconf/SqlMapConfig.xml"
+			/>
+		-->
+		<property name="lobHandler">
+			<ref local="oracleLobHandler" />
+		</property>
+	</bean>
+
+	
+
+
+	<!--
+	<bean id="txManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<tx:advice id="txAdvice" transaction-manager="txManager">
+		<tx:attributes>
+			<tx:method name="get*" propagation="REQUIRED" read-only="true" />
+			<tx:method name="query*" propagation="REQUIRED" read-only="true" />
+			<tx:method name="find*" propagation="REQUIRED" read-only="true" />
+			<tx:method name="view*" propagation="REQUIRED" read-only="true" />
+			<tx:method name="run" propagation="REQUIRED" read-only="true" />
+			 获取指标结果的方法，因为指标结果计算中会抛出异常 
+			<tx:method name="seatg*" propagation="REQUIRED"
+				rollback-for="Throwable" />
+			<tx:method name="update*" propagation="REQUIRED"
+				rollback-for="Throwable" />
+			<tx:method name="add*" propagation="REQUIRED" rollback-for="Throwable" />
+			<tx:method name="insert*" propagation="REQUIRED"
+				rollback-for="Throwable" />
+			<tx:method name="edit*" propagation="REQUIRED"
+				rollback-for="Throwable" />
+			<tx:method name="delete*" propagation="REQUIRED"
+				rollback-for="Throwable" />
+			<tx:method name="save*" propagation="REQUIRED"
+				rollback-for="Throwable" />
+			<tx:method name="submit*" propagation="REQUIRED"
+				rollback-for="Throwable" />
+
+		</tx:attributes>
+	</tx:advice>
+	<aop:config proxy-target-class="true">
+		<aop:advisor advice-ref="txAdvice"
+			pointcut="execution(* com..*(..))" />
+	</aop:config>
+
+
+	-->
+</beans>

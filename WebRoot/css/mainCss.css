@@ -1,0 +1,90 @@
+#mainDiv {
+	width: 100%;
+	height: 100%;
+	
+}
+
+#leftDiv {
+	width: 40%;
+	height: 100%;
+	float: left;
+}
+
+#left1 {
+	width: 100%;
+	height: 50%;
+	background-color: #989090;
+}
+
+#left2 {
+	width: 100%;
+	height: 50%;
+	background-color: #cccc22;
+}
+
+#centerDiv {
+	width: 20%;
+	height: 100%;
+	float: left;
+	background-color: black;
+}
+
+#center1 {
+	width: 100%;
+	height: 20%;
+	background-color: #339966;
+}
+
+#center2 {
+	width: 100%;
+	height: 20%;
+	background-color: #0099cc;
+}
+
+#center3 {
+	width: 100%;
+	height: 20%;
+	background-color: #339966;
+}
+
+#center4 {
+	width: 100%;
+	height: 20%;
+	background-color: #0099cc;
+}
+
+#center5 {
+	width: 100%;
+	height: 20%;
+	background-color: #339966;
+}
+
+#rightDiv {
+	width: 40%;
+	height: 100%;
+	float: right;
+	background-color: yellow;
+}
+
+#right1 {
+	width: 100%;
+	height: 50%;
+	background-color: #989090;
+}
+
+#right2 {
+	width: 100%;
+	height: 50%;
+	background-color: #cccc22;
+}
+
+.centerButton{
+	width:100%;
+	height:100%;
+	font-size:24px;
+}
+
+.centerDiv5{
+	font-size: 24px;
+	text-align: center;
+}

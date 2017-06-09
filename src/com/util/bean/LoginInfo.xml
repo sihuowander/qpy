@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="LoginInfoManager">
+	<typeAlias alias="userInfo" type="com.util.bean.UserInfo" />
+
+
+
+	<!-- 获取用户登陆信息-->
+	<statement id="queryUserInfo" resultClass="userInfo">
+		select * from UserInfo
+    </statement>
+
+
+</sqlMap>
